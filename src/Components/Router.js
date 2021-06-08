@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import React from "react";
 import {
   HashRouter as Router,
@@ -8,16 +9,18 @@ import {
 import Home from "Routes/Home";
 import Search from "Routes/Search";
 import Tv from "Routes/Tv";
+import Header from "./Header";
 
-const Routers = () => (
+export default () => (
   <Router>
-    <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/tv" component={Tv} />
-      <Route path="/search" component={Search} />
-      <Redirect from="*" to="/" />
-    </Switch>
+    <>
+      <Header />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/tv" component={Tv} />
+        <Route path="/search" component={Search} />
+        <Redirect from="*" to="/" />
+      </Switch>
+    </>
   </Router>
 );
-
-export default Routers;

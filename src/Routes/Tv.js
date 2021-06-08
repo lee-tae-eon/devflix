@@ -1,3 +1,2 @@
-const Tv = () => <h1>Tv</h1>;
-
-export default Tv;
+/* eslint-disable import/no-anonymous-default-export */
+export default () => <h1>Tv</h1>;
