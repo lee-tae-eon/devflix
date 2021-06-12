@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import Home from "Routes/Home";
 import Search from "Routes/Search";
-import Tv from "Routes/Tv";
+import Tv from "Routes/TV";
 import Header from "./Header";
 
 export default () => (

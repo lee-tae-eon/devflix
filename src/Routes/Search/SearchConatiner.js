@@ -12,14 +12,14 @@ export default class extends React.Component {
   };
 
   render() {
-    const { movieResults, tvResults, searchTerm, error, loading } = this.state;
+    const { movieResults, tvResults, searchTerm, loading, error } = this.state;
     return (
       <SearchPresenter
         movieResults={movieResults}
         tvResults={tvResults}
         searchTerm={searchTerm}
-        error={error}
         loading={loading}
+        error={error}
       />
     );
   }

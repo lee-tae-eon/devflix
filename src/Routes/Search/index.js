@@ -1,3 +1,3 @@
-import SearchContainer from "./SearchContainer";
+import SearchCantainer from "./SearchConatiner";
 
-export default SearchContainer;
+export default SearchCantainer;
