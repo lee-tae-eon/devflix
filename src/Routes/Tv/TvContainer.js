@@ -6,7 +6,7 @@ import TVPresenter from "./TVPresenter";
 export default class extends React.Component {
   state = {
     topRated: null,
-    popualr: null,
+    popular: null,
     airingToday: null,
     loading: true,
     error: null,
@@ -18,7 +18,7 @@ export default class extends React.Component {
         data: { results: topRated },
       } = await tvApi.topRated();
       const {
-        data: { results: popualr },
+        data: { results: popular },
       } = await tvApi.popular();
       const {
         data: { results: airingToday },
@@ -26,7 +26,7 @@ export default class extends React.Component {
 
       this.setState({
         topRated,
-        popualr,
+        popular,
         airingToday,
       });
     } catch {
@@ -39,11 +39,11 @@ export default class extends React.Component {
   }
 
   render() {
-    const { topRated, popualr, airingToday, loading, error } = this.state;
+    const { topRated, popular, airingToday, loading, error } = this.state;
     return (
       <TVPresenter
         topRated={topRated}
-        popualr={popualr}
+        popular={popular}
         airingToday={airingToday}
         loading={loading}
         error={error}
