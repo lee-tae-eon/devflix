@@ -1,13 +1,31 @@
 import React from "react";
-import ProptTypes from "prop-types";
-import stlyed from "styled-components";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
-const DetailPresenter = ({ result, error, loading }) => null;
+const Container = styled.div`
+  height: calc(100vh - 50px);
+  width: 100%;
+  position: relative;
+`;
 
-DetailPresenter.proptTypes = {
-  result: ProptTypes.Object,
-  error: ProptTypes.string,
-  loading: ProptTypes.bool.isRequired,
+const Backdrop = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;
+
+const DetailPresenter = ({ result, error, loading }) => (
+  <Container>
+    <Backdrop bgImage={`${result.backdrop_path}`} />
+  </Container>
+);
+
+DetailPresenter.propTypes = {
+  result: PropTypes.array,
+  error: PropTypes.string,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default DetailPresenter;
