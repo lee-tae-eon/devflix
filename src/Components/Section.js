@@ -17,7 +17,7 @@ const Grid = styled.div`
   margin-top: 25px;
   display: grid;
   grid-gap: 28px;
-  grid-template-columns: repeat(auto-fill, 200px);
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
 `;
 
 const Section = ({ title, children }) => (
