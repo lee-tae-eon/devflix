@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.js": "/devflix/static/js/main.e76ab9ca.chunk.js",
+    "main.js.map": "/devflix/static/js/main.e76ab9ca.chunk.js.map",
+    "runtime-main.js": "/devflix/static/js/runtime-main.c55b3319.js",
+    "runtime-main.js.map": "/devflix/static/js/runtime-main.c55b3319.js.map",
+    "static/js/2.305057f9.chunk.js": "/devflix/static/js/2.305057f9.chunk.js",
+    "static/js/2.305057f9.chunk.js.map": "/devflix/static/js/2.305057f9.chunk.js.map",
+    "index.html": "/devflix/index.html",
+    "static/js/2.305057f9.chunk.js.LICENSE.txt": "/devflix/static/js/2.305057f9.chunk.js.LICENSE.txt",
+    "static/media/noPosterSmall.png": "/devflix/static/media/noPosterSmall.ea2ad102.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c55b3319.js",
+    "static/js/2.305057f9.chunk.js",
+    "static/js/main.e76ab9ca.chunk.js"
+  ]
+}
