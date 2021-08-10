@@ -12,7 +12,12 @@ export const tvApi = {
   airingToday: () => api.get("tv/airing_today"),
   topRated: () => api.get("tv/top_rated"),
   popular: () => api.get("tv/popular"),
-  tvshowDetail: (id) => api.get(`tv/${id}`),
+  tvshowDetail: (id) =>
+    api.get(`tv/${id}`, {
+      params: {
+        append_to_response: "videos",
+      },
+    }),
   search: (term) =>
     api.get("search/tv", {
       params: {

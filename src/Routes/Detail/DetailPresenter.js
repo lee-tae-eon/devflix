@@ -81,7 +81,7 @@ const Overview = styled.div`
 const TubeSect = styled.section`
   margin-top: 100px;
   width: 100%;
-  height: calc(100vh - 400px);
+  height: calc(100vh - 350px);
   overflow-x: scroll;
   h1 {
     margin-bottom: 30px;
@@ -96,13 +96,19 @@ const TubeSect = styled.section`
     align-items: center;
     div {
       margin: 0 auto;
-      margin-bottom: 40px;
-      iframe {
-        width: 800px;
-        height: 400px;
+      &:not(:last-child) {
+        margin-bottom: 40px;
       }
     }
   }
+`;
+
+const EmptyVideo = styled.div`
+  font-size: 60px;
+  height: calc(100vh - 500px);
+  display: flex;
+  align-items: center;
+  color: inherit;
 `;
 
 const DetailPresenter = ({ result, error, loading }) =>
@@ -186,17 +192,36 @@ const DetailPresenter = ({ result, error, loading }) =>
           <TubeSect>
             <h1> Preview Videos </h1>
             <div className="video-container">
-              {result.videos &&
+              {result.videos.results.length > 0 ? (
                 result.videos.results.map((result, index) =>
                   index < 4 ? (
                     <div key={result.key}>
                       <iframe
                         title={result.name}
                         src={`http://www.youtube.com/embed/${result.key}`}
+                        width="800px"
+                        height="450px"
+                        allow="
+                          accelerometer;
+                          clipboard-white;
+                          encrypted-media;
+                          gyroscope;
+                          picture-in-picture;
+                        "
+                        allowFullScreen="allowfullscreen"
+                        mozallowfullscreen="mozallowfullscreen"
+                        msallowfullscreen="msallowfullscreen"
+                        oallowfullscreen="oallowfullscreen"
+                        webkitallowfullscreen="webkitallowfullscreen"
                       ></iframe>
                     </div>
-                  ) : null
-                )}
+                  ) : (
+                    <h1>Video Not Found</h1>
+                  )
+                )
+              ) : (
+                <EmptyVideo>Video Not Found</EmptyVideo>
+              )}
             </div>
           </TubeSect>
         </Data>
