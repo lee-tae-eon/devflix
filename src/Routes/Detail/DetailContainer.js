@@ -38,6 +38,7 @@ export default class extends React.Component {
       } else {
         ({ data: result } = await tvApi.tvshowDetail(parsedId));
       }
+      console.log(result);
     } catch {
       this.setState({ error: "Can't find detail page" });
     } finally {

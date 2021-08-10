@@ -57,7 +57,15 @@ const ItemContainer = styled.div`
   margin: 20px 0;
 `;
 
-const Item = styled.span``;
+const Item = styled.span`
+  .imdb__link {
+    padding: 5px;
+    background-color: #e2b615;
+    color: black;
+    font-weight: 900;
+    border-radius: 5px;
+  }
+`;
 
 const Divider = styled.span`
   margin: 0 10px;
@@ -68,6 +76,33 @@ const Overview = styled.div`
   opacity: 0.7;
   line-height: 1.5;
   width: 80%;
+`;
+
+const TubeSect = styled.section`
+  margin-top: 100px;
+  width: 100%;
+  height: calc(100vh - 400px);
+  overflow-x: scroll;
+  h1 {
+    margin-bottom: 30px;
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .video-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    div {
+      margin: 0 auto;
+      margin-bottom: 40px;
+      iframe {
+        width: 800px;
+        height: 400px;
+      }
+    }
+  }
 `;
 
 const DetailPresenter = ({ result, error, loading }) =>
@@ -126,12 +161,44 @@ const DetailPresenter = ({ result, error, loading }) =>
                     : `${genre.name} / `
                 )}
             </Item>
+
+            {result.imdb_id ? (
+              <>
+                <Divider>·</Divider>
+                <Item>
+                  <a
+                    className="imdb__link"
+                    href={`http://imdb.com/title/${result.imdb_id}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    IMDB
+                  </a>
+                </Item>
+              </>
+            ) : null}
           </ItemContainer>
           <Overview>
             {result.overview.length > 100
               ? `${result.overview.substr(0, 100)}... ...`
               : result.overview}
           </Overview>
+          <TubeSect>
+            <h1> Preview Videos </h1>
+            <div className="video-container">
+              {result.videos &&
+                result.videos.results.map((result, index) =>
+                  index < 4 ? (
+                    <div key={result.key}>
+                      <iframe
+                        title={result.name}
+                        src={`http://www.youtube.com/embed/${result.key}`}
+                      ></iframe>
+                    </div>
+                  ) : null
+                )}
+            </div>
+          </TubeSect>
         </Data>
       </Content>
     </Container>
