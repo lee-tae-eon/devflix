@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Helmet from "react-helmet";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
+import Videos from "Components/Videos";
 
 const Container = styled.div`
   height: calc(100vh - 50px);
@@ -86,53 +87,10 @@ const Overview = styled.div`
 `;
 
 const TubeSect = styled.section`
-  /* margin-left: 40px; */
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
   gap: 30px;
-`;
-
-const PrevVideo = styled.div`
-  border: 2px solid #141414;
-  border-radius: 7px;
-  background-color: rgba(0, 0, 0, 0.3);
-  overflow-x: scroll;
-  ::-webkit-scrollbar {
-    height: 5px;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: none;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: white;
-    border-radius: 5px;
-  }
-  ::-webkit-scrollbar-button:start:decrement,
-  ::-webkit-scrollbar-button:end:increment {
-    width: 10px;
-  }
-  overflow-y: hidden;
-  display: flex;
-  width: 100%;
-  height: 200px;
-  align-items: center;
-  justify-content: ${(props) =>
-    props.resultLength === 1 ? "center" : "baseline"};
-  div {
-    padding: 5px 10px;
-    &:not(:last-child) {
-      margin-right: 40px;
-    }
-  }
-`;
-
-const EmptyVideo = styled.div`
-  font-size: 60px;
-  height: calc(100vh - 500px);
-  display: flex;
-  align-items: center;
-  color: inherit;
 `;
 
 const DetailPresenter = ({ result, error, loading, isMovie }) =>
@@ -215,39 +173,7 @@ const DetailPresenter = ({ result, error, loading, isMovie }) =>
           </Overview>
           <TubeSect>
             <PrevTitle>Preview Videos</PrevTitle>
-            <PrevVideo
-              className="video-container"
-              resultLength={result.videos.results.length}
-            >
-              {result.videos.results.length > 0 ? (
-                result.videos.results.map((result, index) =>
-                  index < 4 ? (
-                    <div key={result.key}>
-                      <iframe
-                        title={result.name}
-                        src={`http://www.youtube.com/embed/${result.key}`}
-                        width="320px"
-                        height="180px"
-                        allow="
-                          accelerometer;
-                          clipboard-white;
-                          encrypted-media;
-                          gyroscope;
-                          picture-in-picture;
-                        "
-                        allowFullScreen="allowfullscreen"
-                        mozallowfullscreen="mozallowfullscreen"
-                        msallowfullscreen="msallowfullscreen"
-                        oallowfullscreen="oallowfullscreen"
-                        webkitallowfullscreen="webkitallowfullscreen"
-                      ></iframe>
-                    </div>
-                  ) : null
-                )
-              ) : (
-                <EmptyVideo>Video Not Found</EmptyVideo>
-              )}
-            </PrevVideo>
+            <Videos resultVideos={result.videos.results} />
           </TubeSect>
         </Data>
       </Content>
