@@ -53,6 +53,13 @@ const Title = styled.h3`
   margin-bottom: 10px;
 `;
 
+const PrevTitle = styled.h3`
+  font-size: 28px;
+  margin-top: 50px;
+  width: 100%;
+  text-align: center;
+`;
+
 const ItemContainer = styled.div`
   margin: 20px 0;
 `;
@@ -79,26 +86,43 @@ const Overview = styled.div`
 `;
 
 const TubeSect = styled.section`
-  margin-top: 100px;
+  /* margin-left: 40px; */
   width: 100%;
-  height: calc(100vh - 350px);
-  overflow-x: scroll;
-  h1 {
-    margin-bottom: 30px;
-    font-size: 22px;
-    text-align: center;
-  }
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+`;
 
-  .video-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    div {
-      margin: 0 auto;
-      &:not(:last-child) {
-        margin-bottom: 40px;
-      }
+const PrevVideo = styled.div`
+  border: 2px solid #141414;
+  border-radius: 7px;
+  background-color: rgba(0, 0, 0, 0.3);
+  overflow-x: scroll;
+  ::-webkit-scrollbar {
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: none;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-button:start:decrement,
+  ::-webkit-scrollbar-button:end:increment {
+    width: 10px;
+  }
+  overflow-y: hidden;
+  display: flex;
+  width: 100%;
+  height: 200px;
+  align-items: center;
+  justify-content: ${(props) =>
+    props.resultLength === 1 ? "center" : "baseline"};
+  div {
+    padding: 5px 10px;
+    &:not(:last-child) {
+      margin-right: 40px;
     }
   }
 `;
@@ -111,7 +135,7 @@ const EmptyVideo = styled.div`
   color: inherit;
 `;
 
-const DetailPresenter = ({ result, error, loading }) =>
+const DetailPresenter = ({ result, error, loading, isMovie }) =>
   loading ? (
     <>
       <Helmet>
@@ -190,8 +214,11 @@ const DetailPresenter = ({ result, error, loading }) =>
               : result.overview}
           </Overview>
           <TubeSect>
-            <h1> Preview Videos </h1>
-            <div className="video-container">
+            <PrevTitle>Preview Videos</PrevTitle>
+            <PrevVideo
+              className="video-container"
+              resultLength={result.videos.results.length}
+            >
               {result.videos.results.length > 0 ? (
                 result.videos.results.map((result, index) =>
                   index < 4 ? (
@@ -199,8 +226,8 @@ const DetailPresenter = ({ result, error, loading }) =>
                       <iframe
                         title={result.name}
                         src={`http://www.youtube.com/embed/${result.key}`}
-                        width="800px"
-                        height="450px"
+                        width="320px"
+                        height="180px"
                         allow="
                           accelerometer;
                           clipboard-white;
@@ -215,14 +242,12 @@ const DetailPresenter = ({ result, error, loading }) =>
                         webkitallowfullscreen="webkitallowfullscreen"
                       ></iframe>
                     </div>
-                  ) : (
-                    <h1>Video Not Found</h1>
-                  )
+                  ) : null
                 )
               ) : (
                 <EmptyVideo>Video Not Found</EmptyVideo>
               )}
-            </div>
+            </PrevVideo>
           </TubeSect>
         </Data>
       </Content>
