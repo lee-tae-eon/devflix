@@ -46,13 +46,14 @@ const EmptyVideo = styled.div`
 
 const Videos = ({ resultVideos }) => (
   <VideoContainer resultLength={resultVideos.length}>
+    {console.log(resultVideos)}
     {resultVideos.length > 0 ? (
       resultVideos.map((result, index) =>
         index < 4 ? (
           <div key={result.key}>
             <iframe
               title={result.name}
-              src={`http://www.youtube.com/embed/${result.key}`}
+              src={`https://www.youtube.com/embed/${result.key}`}
               width="320px"
               height="180px"
               allow="
