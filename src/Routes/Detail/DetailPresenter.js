@@ -156,7 +156,7 @@ const DetailPresenter = ({ result, error, loading, isMovie }) =>
                 <Item>
                   <a
                     className="imdb__link"
-                    href={`http://imdb.com/title/${result.imdb_id}`}
+                    href={`https://imdb.com/title/${result.imdb_id}`}
                     target="_blank"
                     rel="noreferrer"
                   >

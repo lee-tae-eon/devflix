@@ -46,7 +46,6 @@ const EmptyVideo = styled.div`
 
 const Videos = ({ resultVideos }) => (
   <VideoContainer resultLength={resultVideos.length}>
-    {console.log(resultVideos)}
     {resultVideos.length > 0 ? (
       resultVideos.map((result, index) =>
         index < 4 ? (
