@@ -93,7 +93,7 @@ const TubeSect = styled.section`
   gap: 30px;
 `;
 
-const DetailPresenter = ({ result, error, loading, isMovie }) =>
+const DetailPresenter = ({ result, error, loading }) =>
   loading ? (
     <>
       <Helmet>
