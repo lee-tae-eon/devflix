@@ -23,7 +23,6 @@ const DetailContainer = (props) => {
     }
 
     try {
-      console.log(pathname);
       if (pathname.includes("/movie/")) {
         ({ data: result } = await moviesApi.movieDetail(parsedId));
         setResult(result);
