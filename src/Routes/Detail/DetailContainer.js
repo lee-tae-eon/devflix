@@ -8,16 +8,7 @@ const DetailContainer = (props) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const getApi = async () => {
-    const {
-      location: { pathname },
-      match: {
-        params: { id },
-      },
-      history: { push },
-    } = props;
-    const parsedId = parseInt(id);
-
+  const getApi = async ({ pathname, push, parsedId }) => {
     if (isNaN(parsedId)) {
       return push("/");
     }
@@ -38,7 +29,15 @@ const DetailContainer = (props) => {
   };
 
   useEffect(() => {
-    getApi();
+    const {
+      location: { pathname },
+      match: {
+        params: { id },
+      },
+      history: { push },
+    } = props;
+    const parsedId = parseInt(id);
+    getApi({ pathname, push, parsedId });
   }, []);
 
   return <DetailPresenter result={result} error={error} loading={loading} />;
